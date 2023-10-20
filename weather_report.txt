@@ -1,0 +1,18 @@
+# creating log file
+touch rx_poc.log
+
+# creating bash file
+echo '#! /bin/bash' > rx_poc.sh
+
+# changes permission of rx_poc.sh to executable
+chmod u+x rx_poc.sh
+
+# adding header to the rx_poc.log file
+echo -e "year\tmonth\tday\thour\tobs_tmp\tfc_temp" > rx_poc.log
+
+# adding variable weather_report that store original data of weather in file name format "raw_data_date"
+weather_report=raw_data_$(date +%Y%m%d)
+
+# grabbing weather data from wttr.in for Casablanca city and storing into the "raw_data_date" file
+curl wttr.in/Casablanca --output $weather_report
+
